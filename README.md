@@ -1,31 +1,33 @@
 # ULX3S-TFT-Display-Sobel-Object-Detection
 
-##About
+About
+-
 The scope of this project is a method of processing camera data in real time to detect flying objects (Drones, planes, birds). A camera module is connected to an FPGA board, which handles pixel data and operates a sobel convolution to perform edge detection. The resulting image is fed to a high res watch face TFT display. Both the camera module and TFT display can be easily swapped for other equivalent DVP/I2C and 40 Pin interface modules, respectively.
 
-##Hardware
+Hardware
+-
 Radiona ULX3S FPGA
 OVO7670 Camera Module
 2.1" Newhaven TFT (NHD-2.1-480480AF-ASXP)
 
-##Landmines
+Landmines
+-
 Clock domains are less than ideal. I need to change the TFT clock to be a stable PLL. Internal clock signals aren't named correctly (clk_100MHz is actually 35.7MHz). Clocks can also be optimized more, especially TFT clock.
 TFT raster write is a huge source of latency, can bypass by using multiple line FIFOs to draw to the TFT.
 
 ##Timing Values:
+-
 | Stage           | Latency (approx.) |
-| --------------- | ------------------|
 | Camera FIFO     | 0.04 ms           |
 | SDRAM write     | 0.015 ms          |
 | SDRAM read      | 0.015 ms          |
 | Display FIFO    | 0.04 ms           |
 | Raster wait     | 13–27 ms          |
 
-##IO
+IO
+-
 Ovo7670 Camera connected to bottom bar of J2 header
 ULX3S ↔ NHD-2.1-480480AF-ASXP LCD Pin Mapping
-==================================================
-
 - LCD is used in RGB parallel + SPI initialization mode.
 - LCD pins 1 and 2 are powered in their own separate backlight circuit. (9V Battery + 600 ohm resistor)
 - LCD GND pins and IM1/IM2 are tied to common ground.
@@ -33,10 +35,7 @@ ULX3S ↔ NHD-2.1-480480AF-ASXP LCD Pin Mapping
 - LCD pins 5–9 are MIPI DSI pins and are left unconnected for RGB mode.
 
 Power / Ground / Mode Pins
---------------------------
-
 LCD Pin | LCD Signal | Connection
-------- | ---------- | ----------
 1       | LED_K      | Separate backlight circuit return / backlight ground
 2       | LED_A      | Separate backlight circuit positive supply
 3       | VDD        | ULX3S 3V3 rail
@@ -52,10 +51,8 @@ LCD Pin | LCD Signal | Connection
 40      | IM2        | Common GND
 
 RGB / Timing / SPI Pins Mapped to ULX3S J2
-------------------------------------------
 
 LCD Pin | LCD Signal | ULX3S J1 Signal | Verilog Signal Name 
-------- | ---------- | --------------- | ------------------------------
 11      | VS         | GN0             | lcd_vs
 12      | HS         | GP0             | lcd_hs
 13      | PCLK       | GN1             | lcd_pclk
@@ -86,17 +83,15 @@ LCD Pin | LCD Signal | ULX3S J1 Signal | Verilog Signal Name
 38      | IM0        | 3V3             | lcd_im0
 
 Mode Values for RGB + SPI
--------------------------
-
 lcd_im0 = 1
 IM1     = 0, tied to GND
 IM2     = 0, tied to GND
 
 Notes
------
 - Keep PCLK, HS, VS, DE, and RGB jumpers as short as practical.
 
-##Hardware Utilization
+Hardware Utilization
+-
 FPGA utilisation:
 Info: Logic utilisation before packing:
 Info:     Total LUT4s:     19936/83640    23%
@@ -105,9 +100,6 @@ Info:         carry LUTs:    916/83640     1%
 Info:           RAM LUTs:   6144/10455    58%
 Info:          RAMW LUTs:   3072/20910    14%
 Info:      Total DFFs:       968/83640     1%
-
-
-
 Info: 	          TRELLIS_IO:    97/  365    26%
 Info: 	                DCCA:     3/   56     5%
 Info: 	              DP16KD:     8/  208     3%
