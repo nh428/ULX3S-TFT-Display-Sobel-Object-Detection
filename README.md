@@ -15,10 +15,10 @@ Landmines
 Clock domains are less than ideal. I need to change the TFT clock to be a stable PLL. Internal clock signals aren't named correctly (clk_100MHz is actually 35.7MHz). Clocks can also be optimized more, especially TFT clock.
 TFT raster write is a huge source of latency, can bypass by using multiple line FIFOs to draw to the TFT.
 
-##Timing Values:
+Timing Values:
 -
-| Stage           | Latency (approx.) |
-| Camera FIFO     | 0.04 ms           |
+| Stage           | Latency (approx.) |\n
+| Camera FIFO     | 0.04 ms           |\n
 | SDRAM write     | 0.015 ms          |
 | SDRAM read      | 0.015 ms          |
 | Display FIFO    | 0.04 ms           |
