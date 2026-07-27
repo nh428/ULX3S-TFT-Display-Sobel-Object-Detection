@@ -6,8 +6,8 @@ The scope of this project is a method of processing camera data in real time to 
 
 Hardware
 -
-Radiona ULX3S FPGA
-OVO7670 Camera Module
+Radiona ULX3S FPGA <br>
+OVO7670 Camera Module <br>
 2.1" Newhaven TFT (NHD-2.1-480480AF-ASXP)
 
 Landmines
