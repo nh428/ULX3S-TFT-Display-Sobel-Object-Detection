@@ -17,12 +17,13 @@ TFT raster write is a huge source of latency, can bypass by using multiple line 
 
 Timing Values:
 -
-| Stage           | Latency (approx.) |\n
-| Camera FIFO     | 0.04 ms           |\n
-| SDRAM write     | 0.015 ms          |
-| SDRAM read      | 0.015 ms          |
-| Display FIFO    | 0.04 ms           |
-| Raster wait     | 13–27 ms          |
+| Stage | Latency (approx.) |
+| :--- | :--- |
+| Camera FIFO | 0.04 ms |
+| SDRAM write | 0.015 ms |
+| SDRAM read | 0.015 ms |
+| Display FIFO | 0.04 ms |
+| Raster wait | 13–27 ms |
 
 IO
 -
